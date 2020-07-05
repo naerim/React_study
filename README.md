@@ -1,2 +1,2 @@
 # React_study
-React 스터디
+React 공부
