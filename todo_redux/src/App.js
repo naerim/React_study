@@ -2,14 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import Todos from "./component/Todos";
 
-function App() {
+import { useSelector } from "react-redux";
+import useActions from "./lib/useActions";
+import { changeInput, insert, remove, toggle } from "./module/todos";
+
+const App = () => {
   return (
     <TodoTemplate>
       <Title>TODO LIST</Title>
       <Content>
         <ThisWeek>
           <Name>This Week</Name>
-          <Todos name="week" />
+          <Todos />
         </ThisWeek>
         <ThisMonth>
           <Name>This Month</Name>
@@ -18,8 +22,52 @@ function App() {
       </Content>
     </TodoTemplate>
   );
-}
+};
+/*
+  const { input, todos } = useSelector(({ todos }) => ({
+    input: todos.input,
+    todos: todos.todos,
+  }));
 
+  const [onChangeInput, onInsert, onToggle, onRemove] = useActions(
+    [changeInput, insert, toggle, remove],
+    []
+  );
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onInsert(input);
+    onChangeInput(""); // 등록 후 인풋 포기화
+  };
+
+  const onChange = (e) => onChangeInput(e.target.value);
+
+  return (
+    <TodoTemplate>
+      <Title>TODO LIST</Title>
+      <Content>
+        <ThisWeek>
+          <Name>This Week</Name>
+          <Todos
+            input={input}
+            todos={todos}
+            onSubmit={onSubmit}
+            onChange={onChange}
+            onChangeInput = {onChangeInput}
+            onInsert={onInsert}
+            onToggle={onToggle}
+            onRemove={onRemove}
+          />
+        </ThisWeek>
+        <ThisMonth>
+          <Name>This Month</Name>
+          <Todos />
+        </ThisMonth>
+      </Content>
+    </TodoTemplate>
+  );
+};
+*/
 const TodoTemplate = styled.div`
   width: 512px;
   margin-left: auto;
