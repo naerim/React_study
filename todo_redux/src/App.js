@@ -13,7 +13,7 @@ const App = () => {
       <Content>
         <ThisWeek>
           <Name>This Week</Name>
-          <Todos />
+          <Todos name="week" />
         </ThisWeek>
         <ThisMonth>
           <Name>This Month</Name>
@@ -23,51 +23,7 @@ const App = () => {
     </TodoTemplate>
   );
 };
-/*
-  const { input, todos } = useSelector(({ todos }) => ({
-    input: todos.input,
-    todos: todos.todos,
-  }));
 
-  const [onChangeInput, onInsert, onToggle, onRemove] = useActions(
-    [changeInput, insert, toggle, remove],
-    []
-  );
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    onInsert(input);
-    onChangeInput(""); // 등록 후 인풋 포기화
-  };
-
-  const onChange = (e) => onChangeInput(e.target.value);
-
-  return (
-    <TodoTemplate>
-      <Title>TODO LIST</Title>
-      <Content>
-        <ThisWeek>
-          <Name>This Week</Name>
-          <Todos
-            input={input}
-            todos={todos}
-            onSubmit={onSubmit}
-            onChange={onChange}
-            onChangeInput = {onChangeInput}
-            onInsert={onInsert}
-            onToggle={onToggle}
-            onRemove={onRemove}
-          />
-        </ThisWeek>
-        <ThisMonth>
-          <Name>This Month</Name>
-          <Todos />
-        </ThisMonth>
-      </Content>
-    </TodoTemplate>
-  );
-};
-*/
 const TodoTemplate = styled.div`
   width: 512px;
   margin-left: auto;
@@ -100,7 +56,6 @@ const Name = styled.div`
 
 const ThisWeek = styled.div`
   width: 100%;
-  background: yellow;
   align-items: center;
   justify-content: center;
 `;
