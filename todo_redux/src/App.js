@@ -2,23 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import Todos from "./component/Todos";
 
-import { useSelector } from "react-redux";
-import useActions from "./lib/useActions";
-import { changeInput, insert, remove, toggle } from "./module/todos";
-
 const App = () => {
   return (
     <TodoTemplate>
       <Title>TODO LIST</Title>
       <Content>
-        <ThisWeek>
+        <TodoContainer>
           <Name>This Week</Name>
-          <Todos name="week" />
-        </ThisWeek>
-        <ThisMonth>
+          <Todos week />
+        </TodoContainer>
+        <TodoContainer>
           <Name>This Month</Name>
           <Todos />
-        </ThisMonth>
+        </TodoContainer>
       </Content>
     </TodoTemplate>
   );
@@ -54,17 +50,10 @@ const Name = styled.div`
   justify-content: center;
 `;
 
-const ThisWeek = styled.div`
+const TodoContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-`;
-
-const ThisMonth = styled.div`
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  float: center;
 `;
 
 export default App;
