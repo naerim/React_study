@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Category from "./category";
 const TodoItem = () => {
   return (
     <div>
@@ -10,18 +11,21 @@ const TodoItem = () => {
 
 const Todos = () => {
   return (
-    <TodoSection>
-      <Title>--TodoList--</Title>
-      <Contents>
-        <TodoForm>
-          <input />
-          <button type="submit">등록</button>
-        </TodoForm>
-        <TodoContainer>
-          <TodoItem />
-        </TodoContainer>
-      </Contents>
-    </TodoSection>
+    <div>
+      <Category />
+      <TodoSection>
+        <Title>--TodoList--</Title>
+        <Contents>
+          <TodoForm>
+            <input />
+            <button type="submit">등록</button>
+          </TodoForm>
+          <TodoContainer>
+            <TodoItem />
+          </TodoContainer>
+        </Contents>
+      </TodoSection>
+    </div>
   );
 };
 
