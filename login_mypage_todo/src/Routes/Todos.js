@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Category from "./category";
+import Category from "../Components/category";
 const TodoItem = () => {
   return (
     <div>
