@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./components/main";
-import Login from "./components/login";
-import Todos from "./components/todos";
-import Category from "./components/category";
-import MyPage from "./components/myPage";
+import Main from "./Components/Main";
+import Login from "./Components/Login";
+import MyPage from "./Components/MyPage";
+import Todos from "./Components/Todos";
 
 const App = () => {
   return (

@@ -1,18 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import UseInputs from "../Hooks/UseInputs";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [id, setId] = UseInputs("");
+  const [password, setPassword] = UseInputs("");
+
   return (
     <LoginTemplate>
       <LoginTitle>Login</LoginTitle>
       <InputDiv>
-        <Input placeholder="아이디를 입력하세요" />
+        <Input value={id} placeholder="아이디를 입력하세요" onChange={setId} />
       </InputDiv>
       <InputDiv>
-        <Input type="password" placeholder="비밀번호를 입력하세요" />
+        <Input
+          type="password"
+          value={password}
+          placeholder="비밀번호를 입력하세요"
+          onChange={setPassword}
+        />
       </InputDiv>
       <ButtonDiv>
-        <Button>확인</Button>
+        <Link to={`/`}>
+          <Button>확인</Button>
+        </Link>
       </ButtonDiv>
     </LoginTemplate>
   );
@@ -59,8 +71,7 @@ const Button = styled.button`
   width: 200px;
   height: 30px;
   &:hover {
-    background: #F7BD00;
-    
+    background: #f7bd00;
   }
   &:disabled {
     background: gray;
