@@ -1,9 +1,14 @@
 import React from "react";
+import Main from "./components/main";
+import Login from "./components/login";
+import Todos from "./components/todos";
+import Category from "./components/category";
 
 const App = () => {
   return (
     <div>
-      <h1>안녕하세요~</h1>
+      <Category />
+      <Todos />
     </div>
   );
 };
