@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
     <CategorySection>
-      <MenuButton>
-        <Link to="login">Login</Link>
-      </MenuButton>
-      <MenuButton>
-        <Link to="myPage">MyPage</Link>
-      </MenuButton>
-      <MenuButton>
-        <Link to="todos">Todo</Link>
-      </MenuButton>
+      <Link to="login">
+        <MenuButton>Login </MenuButton>
+      </Link>
+      <Link to="myPage">
+        <MenuButton>MyPage </MenuButton>
+      </Link>
+      <Link to="todos">
+        <MenuButton>Todo </MenuButton>
+      </Link>
     </CategorySection>
   );
 };
