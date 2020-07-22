@@ -3,11 +3,24 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Category = () => {
+  const [login, setLogin] = useState(false);
+
+  const onLogin = () => {
+    setLogin(!login);
+  };
+
   return (
     <CategorySection>
-      <Link to="login">
-        <MenuButton>Login </MenuButton>
-      </Link>
+      {login ? (
+        <Link to="/login">
+          <MenuButton onClick={onLogin}>login</MenuButton>
+        </Link>
+      ) : (
+        <Link to="/">
+          <MenuButton onClick={onLogin}>Logout</MenuButton>
+        </Link>
+      )}
+
       <Link to="myPage">
         <MenuButton>MyPage </MenuButton>
       </Link>
