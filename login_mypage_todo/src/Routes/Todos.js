@@ -7,7 +7,7 @@ import useActions from "../Lib/useActions";
 
 const TodoItem = ({ todo, onToggle, onRemove }) => {
   return (
-    <TodoContainer>
+    <TodoItemDiv>
       <input
         type="checkbox"
         onClick={() => onToggle(todo.id)}
@@ -18,7 +18,7 @@ const TodoItem = ({ todo, onToggle, onRemove }) => {
         {todo.text}
       </span>
       <button onClick={() => onRemove(todo.id)}>삭제</button>
-    </TodoContainer>
+    </TodoItemDiv>
   );
 };
 
@@ -50,7 +50,7 @@ const Todos = () => {
           <input value={input} onChange={onChange} />
           <button type="submit">등록</button>
         </TodoForm>
-        <Content>
+        <TodoContainer>
           {todos.map((todo) => (
             <TodoItem
               todo={todo}
@@ -59,7 +59,7 @@ const Todos = () => {
               onRemove={onRemove}
             />
           ))}
-        </Content>
+        </TodoContainer>
       </TodoSection>
     </div>
   );
@@ -87,12 +87,12 @@ const TodoForm = styled.form`
   align-items: center;
   justify-content: center;
 `;
-const Content = styled.div`
+const TodoContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
 
-const TodoContainer = styled.div`
+const TodoItemDiv = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
