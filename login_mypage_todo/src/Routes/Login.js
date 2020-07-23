@@ -2,23 +2,35 @@ import React from "react";
 import styled from "styled-components";
 import UseInputs from "../Hooks/UseInputs";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useActions from "../Lib/useActions";
+import { isLoggedIn } from "../Modules/login";
 
 const Login = () => {
-  const [id, setId] = UseInputs("");
-  const [password, setPassword] = UseInputs("");
+  const { input, isLogged } = useSelector((user) => ({
+    input: user.input,
+    isLogged: user.isLogged,
+  }));
+
+  const [onLoggedIn] = useActions([isLoggedIn], []);
+
+  const onChange = (e) => onLoggedIn(e.target.value);
 
   return (
     <LoginTemplate>
       <LoginTitle>Login</LoginTitle>
       <InputDiv>
-        <Input value={id} placeholder="아이디를 입력하세요" onChange={setId} />
+        <Input
+          value={input}
+          placeholder="아이디를 입력하세요"
+          onChange={onChange}
+        />
       </InputDiv>
       <InputDiv>
         <Input
           type="password"
-          value={password}
+          value={input}
           placeholder="비밀번호를 입력하세요"
-          onChange={setPassword}
         />
       </InputDiv>
       <ButtonDiv>

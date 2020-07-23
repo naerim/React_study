@@ -44,6 +44,7 @@ function todos(state = initialState, action) {
     switch (action.type) {
       case CHNAGE_INPUT:
         draft.input = action.input;
+        console.log(state);
         break;
       case INSERT:
         draft.todos.push(action.todo);
