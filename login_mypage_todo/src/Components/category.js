@@ -1,31 +1,51 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useActions from "../Lib/useActions";
+import { isLoggedOut } from "../Modules/user";
 
 const Category = () => {
-  const [login, setLogin] = useState(false);
+  const { isLogged } = useSelector((state) => ({
+    isLogged: state.user.isLogged,
+  }));
 
-  const onLogin = () => {
-    setLogin(!login);
+  const [onLoggedOut] = useActions([isLoggedOut], []);
+
+  // 로그인 상태인지 확인
+  const checkIsLogged = (url) => {
+    return isLogged ? `/${url}` : "/";
+  };
+
+  // 경고창
+  const showAlert = () => {
+    return !isLogged && alert("회원만 가능합니다.");
+  };
+
+  // 1초 후 로그아웃 상태로 변경
+  const changeLogout = () => {
+    setTimeout(() => {
+      onLoggedOut();
+    }, 1000);
   };
 
   return (
     <CategorySection>
-      {login ? (
-        <Link to="/login">
-          <MenuButton onClick={onLogin}>login</MenuButton>
+      {console.log(useSelector((state) => state))}
+      {isLogged ? (
+        <Link to="/">
+          <MenuButton onClick={changeLogout}>Logout</MenuButton>
         </Link>
       ) : (
-        <Link to="/">
-          <MenuButton onClick={onLogin}>Logout</MenuButton>
+        <Link to="/login">
+          <MenuButton>Login</MenuButton>
         </Link>
       )}
-
-      <Link to="myPage">
-        <MenuButton>MyPage </MenuButton>
+      <Link to={checkIsLogged("myPage")}>
+        <MenuButton onClick={showAlert}>MyPage</MenuButton>
       </Link>
-      <Link to="todos">
-        <MenuButton>Todo </MenuButton>
+      <Link to={checkIsLogged("todos")}>
+        <MenuButton onClick={showAlert}>Todo </MenuButton>
       </Link>
     </CategorySection>
   );
