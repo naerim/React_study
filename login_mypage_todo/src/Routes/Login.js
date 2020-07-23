@@ -1,20 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import UseInputs from "../Hooks/UseInputs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useActions from "../Lib/useActions";
-import { isLoggedIn } from "../Modules/login";
+import { isLoggedIn } from "../Modules/user";
 
 const Login = () => {
-  const { input, isLogged } = useSelector((user) => ({
+  const { input } = useSelector((user) => ({
     input: user.input,
-    isLogged: user.isLogged,
   }));
 
   const [onLoggedIn] = useActions([isLoggedIn], []);
 
   const onChange = (e) => onLoggedIn(e.target.value);
+
+  const changeLogIn = () => {
+    setTimeout(() => {
+      onLoggedIn();
+    }, 1000);
+  };
 
   return (
     <LoginTemplate>
@@ -34,8 +38,8 @@ const Login = () => {
         />
       </InputDiv>
       <ButtonDiv>
-        <Link to={`/`}>
-          <Button>확인</Button>
+        <Link to="/">
+          <Button onClick={changeLogIn}>확인</Button>
         </Link>
       </ButtonDiv>
     </LoginTemplate>
