@@ -5,19 +5,18 @@ const LOGIN_REQUEST = "login/LOGIN_REQUEST";
 const LOGOUT_REQUEST = "login/LOGOUT_REQUEST";
 
 // 액션 생성 함수
-export const isLoggedIn = (input) => ({
+export const isLoggedIn = (id) => ({
   type: LOGIN_REQUEST,
-  input,
+  id,
 });
 
-export const isLoggedOut = (isLogged) => ({
+export const isLoggedOut = () => ({
   type: LOGOUT_REQUEST,
-  isLogged,
 });
 
 //초기 상태
 const initialState = {
-  input: undefined,
+  id: undefined,
   isLogged: false,
 };
 
@@ -26,13 +25,13 @@ function user(state = initialState, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case LOGIN_REQUEST:
-        draft.input = action.input;
+        draft.id = action.id;
         draft.isLogged = true;
         console.log(state);
         break;
       case LOGOUT_REQUEST:
         draft.isLogged = false;
-        draft.input = undefined;
+        draft.id = undefined;
         break;
       default:
         return initialState;

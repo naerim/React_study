@@ -5,15 +5,15 @@ import { useSelector } from "react-redux";
 
 const MyPage = () => {
   // store 안의 state 값을 props로 연결
-  const { input } = useSelector((state) => ({
-    input: state.user.input,
+  const { id } = useSelector((state) => ({
+    id: state.user.id,
   }));
 
   return (
     <div>
       <Category />
       <MyPageSection>
-        <Content>{input} 님 환영합니다.</Content>
+        <Content>{id} 님 환영합니다.</Content>
       </MyPageSection>
     </div>
   );
