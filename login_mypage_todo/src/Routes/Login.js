@@ -12,8 +12,6 @@ const Login = () => {
 
   const [onLoggedIn] = useActions([isLoggedIn], []);
 
-  const onChange = (e) => onLoggedIn(e.target.value);
-
   const changeLogIn = () => {
     setTimeout(() => {
       onLoggedIn();
@@ -24,11 +22,7 @@ const Login = () => {
     <LoginTemplate>
       <LoginTitle>Login</LoginTitle>
       <InputDiv>
-        <Input
-          value={input}
-          placeholder="아이디를 입력하세요"
-          onChange={onChange}
-        />
+        <Input value={input} placeholder="아이디를 입력하세요" />
       </InputDiv>
       <InputDiv>
         <Input
