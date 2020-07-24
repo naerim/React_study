@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import useActions from "../Lib/useActions";
+import { useDispatch, useSelector } from "react-redux";
 import { isLoggedOut } from "../Modules/user";
 
 const Category = () => {
@@ -10,7 +9,8 @@ const Category = () => {
     isLogged: state.user.isLogged,
   }));
 
-  const [onLoggedOut] = useActions([isLoggedOut], []);
+  const dispatch = useDispatch();
+  const onLoggedOut = useCallback(() => dispatch(isLoggedOut()), [dispatch]);
 
   // 로그인 상태인지 확인
   const checkIsLogged = (url) => {

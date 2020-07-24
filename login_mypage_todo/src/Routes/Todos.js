@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import Category from "../Components/category";
 import { changeInput, insert, toggle, remove } from "../Modules/todos";
-import { useSelector } from "react-redux";
-import useActions from "../Lib/useActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const TodoItem = ({ todo, onToggle, onRemove }) => {
   return (
@@ -28,10 +27,13 @@ const Todos = () => {
     todos: todos.todos,
   }));
 
-  const [onChangeInput, onInsert, onToggle, onRemove] = useActions(
-    [changeInput, insert, toggle, remove],
-    []
-  );
+  const dispatch = useDispatch();
+  const onChangeInput = useCallback((input) => dispatch(changeInput(input)), [
+    dispatch,
+  ]);
+  const onInsert = useCallback((text) => dispatch(insert(text)), [dispatch]);
+  const onToggle = useCallback((id) => dispatch(toggle(id)), [dispatch]);
+  const onRemove = useCallback((id) => dispatch(remove(id)), [dispatch]);
 
   const onSubmit = (e) => {
     e.preventDefault();
