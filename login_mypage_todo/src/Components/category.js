@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoggedOut } from "../Modules/user";
+import { resetTodos } from "../Modules/todos";
 
 const Category = () => {
   const { isLogged } = useSelector((state) => ({
@@ -11,6 +12,7 @@ const Category = () => {
 
   const dispatch = useDispatch();
   const onLoggedOut = useCallback(() => dispatch(isLoggedOut()), [dispatch]);
+  const onResetTodos = useCallback(() => dispatch(resetTodos()), [dispatch]);
 
   // 로그인 상태인지 확인
   const checkIsLogged = (url) => {
@@ -25,6 +27,7 @@ const Category = () => {
   // 1초 후 로그아웃 상태로 변경
   const changeLogout = () => {
     setTimeout(() => {
+      onResetTodos();
       onLoggedOut();
     }, 1000);
   };
