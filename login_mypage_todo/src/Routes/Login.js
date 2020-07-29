@@ -1,44 +1,43 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { isLoggedIn } from "../Modules/user";
 
 const Login = () => {
-  const { id } = useSelector((user) => ({
-    id: user.id,
-  }));
+  const [id, setId] = useState("");
 
   const dispatch = useDispatch();
-  const onLoggedIn = useCallback((id) => dispatch(isLoggedIn(id)), [dispatch]);
+  const onLoggedIn = useCallback((uid) => dispatch(isLoggedIn(uid)), [
+    dispatch,
+  ]);
 
-  // const changeLogIn = () => {
-  //   setTimeout(() => {
-  //       onLoggedIn(id);
-  //   }, 1000);
-  // };
+  const onChange = (e) => setId(e.target.value);
 
-  const onChange = (e) => onLoggedIn(e.target.value);
+  // 1초 후 로그인
+  const changeLogin = () => {
+    setTimeout(() => {
+      onLoggedIn(id);
+    }, 1000);
+  };
 
   return (
     <LoginTemplate>
       <LoginTitle>Login</LoginTitle>
-      <form>
-        <InputDiv>
-          <Input
-            value={id}
-            placeholder="아이디를 입력하세요"
-            onChange={onChange}
-          />
-        </InputDiv>
-        <InputDiv>
-          <Input type="password" placeholder="비밀번호를 입력하세요" />
-        </InputDiv>
-      </form>
+      <InputDiv>
+        <Input
+          value={id}
+          placeholder="아이디를 입력하세요"
+          onChange={onChange}
+        />
+      </InputDiv>
+      <InputDiv>
+        <Input type="password" placeholder="비밀번호를 입력하세요" />
+      </InputDiv>
 
       <ButtonDiv>
         <Link to="/">
-          <Button>확인</Button>
+          <Button onClick={changeLogin}>확인</Button>
         </Link>
       </ButtonDiv>
     </LoginTemplate>
