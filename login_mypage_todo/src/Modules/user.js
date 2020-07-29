@@ -17,7 +17,7 @@ export const isLoggedOut = () => ({
 //초기 상태
 const initialState = {
   id: undefined,
-  isLogged: false,
+  isLogged: undefined,
 };
 
 //리듀서 함수
@@ -34,7 +34,7 @@ function user(state = initialState, action) {
         draft.id = undefined;
         break;
       default:
-        return initialState;
+        break;
     }
   });
 }

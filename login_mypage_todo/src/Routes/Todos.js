@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import Category from "../Components/category";
 import { changeInput, insert, toggle, remove } from "../Modules/todos";
@@ -22,36 +22,38 @@ const TodoItem = ({ todo, onToggle, onRemove }) => {
 };
 
 const Todos = () => {
-  const { input, todos } = useSelector(({ todos }) => ({
-    input: todos.input,
+  const [todoInput, setTodoInput] = useState("");
+  const { todos } = useSelector(({ todos }) => ({
     todos: todos.todos,
   }));
 
   const dispatch = useDispatch();
-  const onChangeInput = useCallback((input) => dispatch(changeInput(input)), [
-    dispatch,
-  ]);
+
   const onInsert = useCallback((text) => dispatch(insert(text)), [dispatch]);
   const onToggle = useCallback((id) => dispatch(toggle(id)), [dispatch]);
   const onRemove = useCallback((id) => dispatch(remove(id)), [dispatch]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onInsert(input);
-    onChangeInput("");
+    // dispatch({ type: "todos/INSERT", todo: todoInput });
+    onInsert(todoInput);
+    setTodoInput("");
   };
 
-  const onChange = (e) => onChangeInput(e.target.value);
+  const onChange = (e) => setTodoInput(e.target.value);
 
   return (
     <div>
       <Category />
       <TodoSection>
         <Title>--TodoList--</Title>
-        <TodoForm onSubmit={onSubmit}>
-          <input value={input} onChange={onChange} />
-          <button type="submit">등록</button>
-        </TodoForm>
+        <TodoDiv>
+          <input value={todoInput} onChange={onChange} />
+          <button type="button " onClick={onSubmit}>
+            등록
+          </button>
+        </TodoDiv>
+
         <TodoContainer>
           {todos.map((todo) => (
             <TodoItem
@@ -84,7 +86,7 @@ const Title = styled.div`
   justify-content: center;
 `;
 
-const TodoForm = styled.form`
+const TodoDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
