@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import Category from "../Components/category";
-import { changeInput, insert, toggle, remove } from "../Modules/todos";
+import { insert, toggle, remove } from "../Modules/todos";
 import { useDispatch, useSelector } from "react-redux";
 
 const TodoItem = ({ todo, onToggle, onRemove }) => {
@@ -28,14 +28,13 @@ const Todos = () => {
   }));
 
   const dispatch = useDispatch();
-
   const onInsert = useCallback((text) => dispatch(insert(text)), [dispatch]);
   const onToggle = useCallback((id) => dispatch(toggle(id)), [dispatch]);
   const onRemove = useCallback((id) => dispatch(remove(id)), [dispatch]);
 
+  // 등록 버튼을 눌렀을 때, todos배열에 추가되고 input이 초기화됨
   const onSubmit = (e) => {
     e.preventDefault();
-    // dispatch({ type: "todos/INSERT", todo: todoInput });
     onInsert(todoInput);
     setTodoInput("");
   };
