@@ -3,12 +3,14 @@ import produce from "immer";
 const INCREASE = "INCREASE";
 const DECREASE = "DECREASE";
 
-export const increase = () => ({
+export const increase = (input) => ({
   type: INCREASE,
+  input
 });
 
-export const decrease = () => ({
+export const decrease = (input) => ({
   type: DECREASE,
+  input
 });
 
 const initialState = {
@@ -19,11 +21,10 @@ function counter(state = initialState, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case INCREASE:
-        draft.number = state.number + 1;
-        console.log(state);
+        draft.number = state.number + action.input;
         break;
       case DECREASE:
-        draft.number = state.number - 1;
+        draft.number = state.number - action.input;
         break;
       default:
         break;

@@ -5,20 +5,39 @@ import { increase, decrease } from "../modules/counter";
 
 const Counting = () => {
   const { countNum } = useSelector((state) => ({
-    number: state.number,
+    countNum: state.counter.number,
   }));
 
   const dispatch = useDispatch();
-  const onIncrease = useCallback(() => dispatch(increase()), [dispatch]);
-  const onDecrease = useCallback(() => dispatch(decrease()), [dispatch]);
+  const onIncrease = useCallback((input) => dispatch(increase(input)), [
+    dispatch,
+  ]);
+  const onDecrease = useCallback((input) => dispatch(decrease(input)), [dispatch]);
+
+  const [input, setInput] = useState("");
+
+  const IncreaseBtn = () => {
+    onIncrease(Number(input));
+    setInput("");
+  };
+
+  const DecreaseBtn = () => {
+    onDecrease(Number(input));
+    setInput("");
+  };
 
   return (
     <WholeTemplate>
       <CountDiv>
         <Title>Counting Number!</Title>
         <Result>{countNum}</Result>
-        <button onClick={onIncrease}>+</button>
-        <button onClick={onDecrease}>-</button>
+        <input
+          value={input}
+          placeholder="숫자를 입력하세요"
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button onClick={IncreaseBtn}>+</button>
+        <button onClick={DecreaseBtn}>-</button>
       </CountDiv>
     </WholeTemplate>
   );
@@ -41,7 +60,6 @@ const Title = styled.h1`
 `;
 
 const Result = styled.h1`
-  color: black;
   font-size: 4rem;
 `;
 
