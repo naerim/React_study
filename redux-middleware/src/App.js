@@ -1,11 +1,8 @@
 import React from "react";
+import Counting from "./containers/Counting";
 
 function App() {
-  return (
-    <div className="App">
-      <div>test</div>
-    </div>
-  );
+  return <Counting />;
 }
 
 export default App;
