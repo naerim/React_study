@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { increase, decrease } from "../modules/counter";
+import { increaseAsync } from "../modules/counter";
 
 const Counting = () => {
   const { countNum } = useSelector((state) => ({
@@ -12,7 +13,16 @@ const Counting = () => {
   const onIncrease = useCallback((input) => dispatch(increase(input)), [
     dispatch,
   ]);
-  const onDecrease = useCallback((input) => dispatch(decrease(input)), [dispatch]);
+  const onDecrease = useCallback((input) => dispatch(decrease(input)), [
+    dispatch,
+  ]);
+
+  const onIncreaseAsync = (input) => () => {
+    setTimeout(() => {
+      dispatch(increaseAsync(input));
+      setInput("");
+    }, 1000);
+  };
 
   const [input, setInput] = useState("");
 
@@ -36,7 +46,7 @@ const Counting = () => {
           placeholder="숫자를 입력하세요"
           onChange={(e) => setInput(e.target.value)}
         />
-        <button onClick={IncreaseBtn}>+</button>
+        <button onClick={onIncreaseAsync(Number(input))}>+</button>
         <button onClick={DecreaseBtn}>-</button>
       </CountDiv>
     </WholeTemplate>
