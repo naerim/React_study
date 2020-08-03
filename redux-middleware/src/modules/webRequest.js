@@ -65,7 +65,7 @@ function webRequest(state = initialState, action) {
         break;
       case GET_POST_SUCCESS: // 요청 완료
         draft.loading.post = false;
-        draft.post = action.post;
+        draft.post = action.payload;
         break;
       case GET_POST_FAILURE: // 요청 완료
         draft.loading.post = false;
@@ -75,7 +75,7 @@ function webRequest(state = initialState, action) {
         break;
       case GET_USERS_SUCCESS: // 요청 완료
         draft.loading.users = false;
-        draft.users = action.users;
+        draft.users = action.payload;
         break;
       case GET_USERS_FAILURE: // 요청 완료
         draft.loading.users = false;
