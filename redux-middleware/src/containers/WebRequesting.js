@@ -1,19 +1,25 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getPost, getUsers } from "../modules/webRequest";
 
-const WebRequesting = ({
-  getPost,
-  getUsers,
-  post,
-  users,
-  loadingPost,
-  loadingUsers,
-}) => {
+const WebRequesting = () => {
+  const { post, users, loadingPost, loadingUsers } = useSelector(
+    ({ webRequest }) => ({
+      post: webRequest.post,
+      users: webRequest.users,
+      loadingPost: webRequest.loading.post,
+      loadingUsers: webRequest.loading.users,
+    })
+  );
+
+  const dispatch = useDispatch();
+  const onGetPost = useCallback((id) => dispatch(getPost(id)), [dispatch]);
+  const onGetUsers = useCallback((id) => dispatch(getUsers(id)), [dispatch]);
+
   useEffect(() => {
-    getPost(1);
-    getUsers(1);
-  }, [getPost, getUsers]);
+    onGetPost(1);
+    onGetUsers(1);
+  }, [onGetPost, onGetUsers]);
 
   return (
     <div>
@@ -45,15 +51,4 @@ const WebRequesting = ({
   );
 };
 
-export default connect(
-  ({ webRequest }) => ({
-    post: webRequest.post,
-    users: webRequest.users,
-    loadingPost: webRequest.loading.post,
-    loadingUsers: webRequest.loading.users,
-  }),
-  {
-    getPost,
-    getUsers,
-  }
-)(WebRequesting);
+export default WebRequesting;
