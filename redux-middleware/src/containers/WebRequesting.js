@@ -3,14 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPost, getUsers } from "../modules/webRequest";
 
 const WebRequesting = () => {
-  const { post, users, loadingPost, loadingUsers } = useSelector(
+  const { post, users } = useSelector(
     ({ webRequest }) => ({
       post: webRequest.post,
       users: webRequest.users,
-      loadingPost: webRequest.loading.post,
-      loadingUsers: webRequest.loading.users,
     })
   );
+
+    const { loadingPost, loadingUsers } = useSelector(
+        ({ loading}) => ({
+            loadingPost: loading['webRequest/GET_POST'],
+            loadingUsers: loading['webRequest/GET_USERS'],
+        })
+    );
 
   const dispatch = useDispatch();
   const onGetPost = useCallback((id) => dispatch(getPost(id)), [dispatch]);
