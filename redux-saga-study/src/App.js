@@ -1,7 +1,12 @@
 import React from "react";
+import WebRequesting from "./container/webRequesting";
 
 function App() {
-  return <div className="App">hi</div>;
+  return (
+    <div>
+      <WebRequesting />
+    </div>
+  );
 }
 
 export default App;
