@@ -21,8 +21,6 @@ const Header = () => {
   );
 };
 
-export default Header;
-
 const StyledHeader = styled.ul`
   display: flex;
   align-items: center;
@@ -53,3 +51,5 @@ const LeftMenu = styled.li`
   font-size: 16px;
   font-weight: 500;
 `;
+
+export default Header;

@@ -11,13 +11,7 @@ const Main = () => {
     <AppLayout>
       <h2>
         Welcome to {""}
-        <a
-          href="https://github.com/gparkkii/react_darkmode"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Darkmode!
-        </a>
+        Darkmode!
         <br />
         <ColoredText>Current mode is {CurrentMode}</ColoredText>
       </h2>
@@ -32,8 +26,8 @@ const Main = () => {
   );
 };
 
-export default Main;
-
 const ColoredText = styled.span`
   color: #e6b74a;
 `;
+
+export default Main;
